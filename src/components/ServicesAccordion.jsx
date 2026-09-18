@@ -72,29 +72,29 @@ export default function ServicesAccordion({ isDark = false }) {
           >
             <button
               onClick={() => setOpenIndex(isOpen ? -1 : index)}
-              className="w-full py-6 md:py-7 flex justify-between items-center text-left transition-all px-2 md:px-4"
+              className="w-full py-5 sm:py-6 md:py-7 flex justify-between items-center text-left transition-all px-1 sm:px-2 md:px-4 gap-3"
               aria-expanded={isOpen}
             >
-              <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-6">
-                <span className={`text-xl md:text-2xl lg:text-3xl font-serif tracking-tight transition-colors duration-300 ${
+              <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3 md:gap-6 min-w-0 pr-2">
+                <span className={`text-lg sm:text-2xl lg:text-3xl font-serif tracking-tight transition-colors duration-300 ${
                   isOpen 
                     ? isDark ? 'text-white' : 'text-black' 
                     : isDark ? 'text-white/80 group-hover:text-white' : 'text-black/80 group-hover:text-black'
                 }`}>
                   {service.title}
                 </span>
-                <span className="font-mono text-[10px] md:text-xs uppercase tracking-[0.2em] text-neutral-400">
+                <span className="font-mono text-[9px] sm:text-[10px] md:text-xs uppercase tracking-[0.16em] sm:tracking-[0.2em] text-neutral-400">
                   {service.time}
                 </span>
               </div>
 
-              <div className="flex items-center gap-5 md:gap-8 ml-4 shrink-0">
-                <span className={`font-mono text-base md:text-lg font-bold tracking-tight ${
+              <div className="flex items-center gap-3 sm:gap-5 md:gap-8 ml-2 sm:ml-4 shrink-0">
+                <span className={`font-mono text-sm sm:text-base md:text-lg font-bold tracking-tight ${
                   isDark ? 'text-white' : 'text-black'
                 }`}>
                   {service.price}
                 </span>
-                <span className={`w-8 h-8 rounded-full border flex items-center justify-center transition-transform duration-300 ${
+                <span className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full border flex items-center justify-center transition-transform duration-300 ${
                   isOpen 
                     ? isDark 
                       ? 'border-white bg-white text-black rotate-180' 
@@ -103,7 +103,7 @@ export default function ServicesAccordion({ isDark = false }) {
                       ? 'border-white/20 text-white/60 group-hover:border-white' 
                       : 'border-black/20 text-black/60 group-hover:border-black'
                 }`}>
-                  {isOpen ? <FaMinus size={10} /> : <FaPlus size={10} />}
+                  {isOpen ? <FaMinus size={9} /> : <FaPlus size={9} />}
                 </span>
               </div>
             </button>
@@ -117,8 +117,8 @@ export default function ServicesAccordion({ isDark = false }) {
                   transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                   className="overflow-hidden"
                 >
-                  <div className="px-2 md:px-4 pb-7 pt-1 max-w-2xl">
-                    <p className={`font-sans text-sm md:text-base leading-relaxed ${
+                  <div className="px-1 sm:px-2 md:px-4 pb-5 sm:pb-7 pt-1 max-w-2xl">
+                    <p className={`font-sans text-xs sm:text-sm md:text-base leading-relaxed ${
                       isDark ? 'text-white/70' : 'text-neutral-600'
                     }`}>
                       {service.details}

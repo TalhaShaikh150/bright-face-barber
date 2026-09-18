@@ -45,7 +45,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h3 className="text-sm uppercase tracking-widest font-bold mb-2">Phone</h3>
-                  <p className="text-gray-400">+44 20 1234 5678</p>
+                  <a href="tel:02076379288" className="text-gray-400 hover:text-white transition-colors">020 7637 9288</a>
                 </div>
               </div>
               
@@ -55,7 +55,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h3 className="text-sm uppercase tracking-widest font-bold mb-2">Email</h3>
-                  <p className="text-gray-400">info@brightfacebarber.com</p>
+                  <a href="mailto:brightfacebarber@gmail.com" className="text-gray-400 hover:text-white transition-colors">brightfacebarber@gmail.com</a>
                 </div>
               </div>
             </div>

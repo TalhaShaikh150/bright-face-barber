@@ -4,8 +4,8 @@ import { motion } from 'framer-motion';
 
 export default function AboutSection() {
   return (
-    <section className="py-24 md:py-36 px-6 md:px-14 bg-white text-neutral-900 relative border-b border-black/5">
-      <div className="max-w-[1440px] mx-auto space-y-16">
+    <section className="py-16 sm:py-24 md:py-36 px-5 sm:px-8 md:px-14 bg-white text-neutral-900 relative border-b border-black/5 overflow-hidden">
+      <div className="max-w-[1440px] mx-auto space-y-12 sm:space-y-16">
         
         {/* Header Lockup - Typographically unified with Hero Section (Cormorant Garamond) */}
         <motion.div 
@@ -13,18 +13,18 @@ export default function AboutSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-black pb-8"
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-black pb-6 sm:pb-8"
         >
           <div>
-            <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-neutral-500 block mb-3">
+            <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.2em] sm:tracking-[0.3em] text-neutral-500 block mb-2 sm:mb-3">
               Heritage & Atmosphere // Fitzrovia
             </span>
-            <h2 className="text-5xl sm:text-7xl md:text-8xl lg:text-[7rem] font-cormorant font-normal leading-[0.88] tracking-tight uppercase text-black">
+            <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[7rem] font-cormorant font-normal leading-[0.92] md:leading-[0.88] tracking-tight uppercase text-black">
               Bright Face <br />
               <span className="italic font-light text-neutral-400">Barber</span>
             </h2>
           </div>
-          <div className="md:text-right font-mono text-xs text-neutral-500 space-y-1 uppercase tracking-widest">
+          <div className="md:text-right font-mono text-[11px] sm:text-xs text-neutral-500 space-y-1 uppercase tracking-wider sm:tracking-widest">
             <p>33 Newman Street</p>
             <p>London W1T 1PY</p>
             <p className="text-black font-bold">Est. 2018</p>
@@ -32,7 +32,7 @@ export default function AboutSection() {
         </motion.div>
 
         {/* 2-Column Editorial Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           
           {/* Left: Pullquote + Story */}
           <motion.div 
@@ -40,13 +40,13 @@ export default function AboutSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:col-span-6 space-y-8"
+            className="lg:col-span-6 space-y-6 sm:space-y-8"
           >
-            <p className="font-cormorant text-2xl sm:text-3xl md:text-4xl font-light italic leading-snug text-neutral-900 border-l-2 border-black pl-6">
+            <p className="font-cormorant text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light italic leading-snug text-neutral-900 border-l-2 border-black pl-4 sm:pl-6">
               "A great haircut is never just a trim — it is an intentional ritual of restoration, precision, and confidence."
             </p>
 
-            <div className="space-y-4 font-sans text-base md:text-lg text-neutral-700 leading-relaxed font-normal">
+            <div className="space-y-4 font-sans text-sm sm:text-base md:text-lg text-neutral-700 leading-relaxed font-normal">
               <p>
                 At Bright Face Barber, we believe a great haircut is more than just a trim, it's an experience.
               </p>
@@ -68,9 +68,9 @@ export default function AboutSection() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="lg:col-span-6 flex justify-center"
+            className="lg:col-span-6 flex justify-center w-full"
           >
-            <div className="relative w-full aspect-[4/3] rounded-[32px] md:rounded-[40px] overflow-hidden shadow-xl border border-black/10 group">
+            <div className="relative w-full aspect-[4/3] rounded-2xl sm:rounded-[32px] md:rounded-[40px] overflow-hidden shadow-xl border border-black/10 group">
               <Image
                 src="/images/about.jpg"
                 alt="Bright Face Barber - About Us"

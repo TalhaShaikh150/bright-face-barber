@@ -20,12 +20,15 @@ html {
   scroll-behavior: smooth;
   background-color: #080808;
   color: #080808;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 body {
   background: #ffffff;
   color: #080808;
   overflow-x: hidden;
+  max-width: 100vw;
 }
 
 /* Subtle Film Grain Noise Overlay */
