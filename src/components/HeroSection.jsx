@@ -25,8 +25,8 @@ export default function HeroSection() {
       className="relative w-full h-screen min-h-screen flex flex-col justify-between overflow-hidden bg-black select-none pt-20 sm:pt-24 md:pt-28 pb-4 sm:pb-5"
     >
       
-      {/* 1. Cinematic Full-Bleed Video Backgrounds (Full Height 100vh) */}
-      {/* Mobile Video (<768px) */}
+      {/* 1. Cinematic Full-Bleed Video Backgrounds (Responsive Mobile & Desktop 100vh) */}
+      {/* Mobile Video (<768px): Dedicated vertical mobile edit */}
       <video 
         ref={mobileVideoRef}
         autoPlay 
