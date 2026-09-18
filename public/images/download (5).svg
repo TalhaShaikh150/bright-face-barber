@@ -1,0 +1,26 @@
+<svg class="Marquee-svg" fill="currentColor" aria-hidden="true" style="height: 128px; transform: translateY(12.8px); overflow: visible;" xmlns="http://www.w3.org/2000/svg">
+        <g class="Marquee-path-group" transform="translate(0, 6.4)">
+          <path class="Marquee-path" fill="none" stroke="transparent" stroke-width="0" d="M-550,84.736  L-550,84.736 S-183.15,84.736 0,84.736 S366.85,84.736 550,84.736 S916.85,84.736 1100,84.736 S1466.85,84.736 1650,84.736" stroke-dasharray="1153 45.548 " id="ac81b8445f02fab22ee2"></path>
+        </g>
+        <text>
+          <textPath class="Marquee-svg-text" href="#ac81b8445f02fab22ee2"><tspan class="Marquee-svg-text" x="0">Welcome to Bright Face Barber</tspan><tspan class="Marquee-svg-text" x="1198.548">Welcome to Bright Face Barber</tspan><tspan class="Marquee-svg-text" x="2397.096">Welcome to Bright Face Barber</tspan></textPath>
+        </text>
+        <text>
+          <textPath class="Marquee-svg-group" visibility="hidden" href="#ac81b8445f02fab22ee2">
+            
+              <tspan class="Marquee-svg-text">Welcome to Bright Face Barber</tspan>
+            
+          </textPath>
+        </text>
+        <g class="Marquee-hitbox" data-hitbox="" aria-labelledby="ariaLabelac81b8445f02fab22ee2">
+          <g class="Marquee-path-hitbox-group" transform="translate(0, -21.183999999999997)">
+            <path class="Marquee-path-hitbox" fill="none" stroke="transparent" d="M-550,84.736  L-550,84.736 S-183.15,84.736 0,84.736 S366.85,84.736 550,84.736 S916.85,84.736 1100,84.736 S1466.85,84.736 1650,84.736" id="ac81b8445f02fab22ee2" stroke-width="128"></path>
+            <path class="Marquee-path-hitbox-focus-outline" fill="none" stroke="transparent" stroke-width="2px" d="
+      M-550,128
+       L-550,115.2 S-183.15,115.2 0,115.2 S366.85,115.2 550,115.2 S916.85,115.2 1100,115.2 S1466.85,115.2 1650,115.2
+      M-550,12.8
+       L-550,12.8 S-183.15,12.8 0,12.8 S366.85,12.8 550,12.8 S916.85,12.8 1100,12.8 S1466.85,12.8 1650,12.8
+    " style="transform: translateY(12.8px);"></path>
+          </g>
+        </g>
+      </svg>
