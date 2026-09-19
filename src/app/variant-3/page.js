@@ -61,7 +61,7 @@ export default function Variant3Page() {
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6">
               <Link 
                 href="/booking" 
-                className="inline-flex items-center gap-3 bg-white text-black px-12 py-4 text-xs font-sans uppercase tracking-[0.2em] font-bold rounded-full hover:bg-neutral-200 transition-all duration-300 shadow-xl hover:scale-105 active:scale-95"
+                className="inline-flex items-center gap-3 bg-white text-black px-12 py-4 text-xs font-btn uppercase tracking-wider font-bold rounded-full hover:bg-neutral-200 transition-all duration-300 hover:scale-105 active:scale-95"
               >
                 <span>Book Now</span>
                 <FaArrowRight size={11} />
@@ -94,7 +94,7 @@ export default function Variant3Page() {
               </div>
             </div>
             <div className="pt-2">
-              <Link href="/booking" className="inline-flex items-center gap-3 bg-black text-white px-12 py-4 text-xs font-sans uppercase tracking-[0.2em] font-bold rounded-full hover:bg-neutral-800 transition-all duration-300 shadow-md">
+              <Link href="/booking" className="inline-flex items-center gap-3 bg-black text-white px-12 py-4 text-xs font-btn uppercase tracking-wider font-bold rounded-full hover:bg-neutral-800 transition-all duration-300">
                 <span>Book</span>
                 <FaArrowRight size={11} />
               </Link>

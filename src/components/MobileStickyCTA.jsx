@@ -31,7 +31,7 @@ export default function MobileStickyCTA() {
         {/* Primary Book Now CTA */}
         <Link 
           href="/booking"
-          className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-full bg-emerald-400 hover:bg-emerald-300 text-black font-btn font-bold text-xs uppercase tracking-[0.16em] shadow-lg transition-transform active:scale-95"
+          className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-full bg-emerald-400 hover:bg-emerald-300 text-black font-btn font-bold text-xs uppercase tracking-wider transition-transform active:scale-95"
         >
           <span>Book Chair</span>
           <FaArrowRight size={10} />

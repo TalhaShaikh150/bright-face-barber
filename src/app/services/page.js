@@ -71,7 +71,7 @@ export default function Services() {
                           </span>
                           <Link
                             href={`/booking?service=${item.id}`}
-                            className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black font-btn font-bold text-xs uppercase tracking-[0.14em] transition-all hover:scale-105 active:scale-95 shadow-sm shrink-0"
+                            className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black font-btn font-bold text-xs uppercase tracking-wider transition-all hover:scale-105 active:scale-95 shrink-0"
                           >
                             <span>Book This</span>
                             <FaArrowRight size={10} />
@@ -89,7 +89,7 @@ export default function Services() {
         <AnimatedSection className="text-center mt-16 sm:mt-24">
           <Link 
             href="/booking" 
-            className="bg-emerald-500 text-black px-12 py-4 rounded-full font-btn font-bold text-xs uppercase tracking-[0.2em] hover:bg-emerald-400 transition-all hover:scale-105 active:scale-95 duration-300 inline-block shadow-md"
+            className="bg-emerald-500 text-black px-12 py-4 rounded-full font-btn font-bold text-xs uppercase tracking-wider hover:bg-emerald-400 transition-all hover:scale-105 active:scale-95 duration-300 inline-block"
           >
             Reserve Your Chair
           </Link>

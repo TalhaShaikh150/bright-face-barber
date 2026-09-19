@@ -115,7 +115,7 @@ export default function Navbar() {
           {/* Solid Emerald BOOK NOW Pill Button (Clean, No Glow) */}
           <Link 
             href="/booking" 
-            className="hidden sm:inline-flex bg-emerald-500 text-black font-btn font-bold text-[10px] sm:text-[11px] uppercase tracking-[0.14em] sm:tracking-[0.16em] px-4 sm:px-6 py-2 sm:py-2.5 rounded-full hover:bg-emerald-400 transition-all shadow-sm shrink-0 hover:scale-[1.02] active:scale-95"
+            className="hidden sm:inline-flex bg-emerald-500 text-black font-btn font-bold text-[10px] sm:text-[11px] uppercase tracking-wider px-4 sm:px-6 py-2 sm:py-2.5 rounded-full hover:bg-emerald-400 transition-all shrink-0 hover:scale-[1.02] active:scale-95"
           >
             BOOK NOW
           </Link>
@@ -165,7 +165,7 @@ export default function Navbar() {
               <Link
                 href="/booking"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full block text-center bg-emerald-500 text-black font-btn font-bold text-xs uppercase tracking-[0.2em] py-3.5 rounded-full hover:bg-emerald-400 transition-colors shadow-sm"
+                className="w-full block text-center bg-emerald-500 text-black font-btn font-bold text-xs uppercase tracking-wider py-3.5 rounded-full hover:bg-emerald-400 transition-colors"
               >
                 Book Appointment
               </Link>

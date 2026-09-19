@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { SERVICES } from '@/data/services';
-import { FaCheckCircle, FaExclamationCircle, FaSpinner, FaCalendarAlt, FaClock, FaCheck, FaPhoneAlt } from 'react-icons/fa';
+import { FaCheckCircle, FaExclamationCircle, FaSpinner, FaClock } from 'react-icons/fa';
 
 export default function BookingForm() {
   const searchParams = useSearchParams();
@@ -43,7 +43,7 @@ export default function BookingForm() {
   const validate = (data) => {
     const errs = {};
     if (!data.name || data.name.trim().length < 2) {
-      errs.name = 'Please enter your full name (minimum 2 characters).';
+      errs.name = 'Please enter your full name.';
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -52,18 +52,18 @@ export default function BookingForm() {
     }
 
     if (!data.date) {
-      errs.date = 'Please select your preferred appointment date.';
+      errs.date = 'Please select a date.';
     } else {
       const selected = new Date(data.date);
       const today = new Date();
       today.setHours(0, 0, 0, 0);
       if (selected < today) {
-        errs.date = 'Appointment date cannot be in the past.';
+        errs.date = 'Date cannot be in the past.';
       }
     }
 
     if (!data.serviceId) {
-      errs.serviceId = 'Please select a grooming service.';
+      errs.serviceId = 'Please select a service.';
     }
 
     return errs;
@@ -97,7 +97,7 @@ export default function BookingForm() {
 
     if (Object.keys(validationErrors).length > 0) {
       setStatus('error');
-      setErrorMessage('Please correct the highlighted fields before submitting.');
+      setErrorMessage('Please complete the highlighted required fields.');
       return;
     }
 
@@ -116,9 +116,9 @@ export default function BookingForm() {
           telephone: formData.telephone,
           service: `${selectedService.name} (${selectedService.price} · ${selectedService.time})`,
           date: formData.date,
-          timeWindow: formData.timeWindow === 'morning' ? 'Morning Unhurried (10:00 — 12:30)' :
-                      formData.timeWindow === 'midday' ? 'Midday Tailored (12:30 — 16:00)' :
-                      'Evening Restoration (16:00 — 20:00)',
+          timeWindow: formData.timeWindow === 'morning' ? 'Morning (10:00 am — 12:30 pm)' :
+                      formData.timeWindow === 'afternoon' ? 'Afternoon (12:30 pm — 4:00 pm)' :
+                      'Evening (4:00 pm — 8:00 pm)',
           notes: formData.notes
         })
       });
@@ -158,7 +158,6 @@ export default function BookingForm() {
     setSuccessData(null);
   };
 
-  // Get minimum date (today in YYYY-MM-DD format)
   const todayString = new Date().toISOString().split('T')[0];
 
   // ================= SUCCESS VIEW =================
@@ -172,7 +171,7 @@ export default function BookingForm() {
             </div>
             <div>
               <span className="font-poppins text-[10px] uppercase tracking-[0.2em] text-emerald-400 block font-semibold">
-                Reservation Request Confirmed
+                Reservation Confirmed
               </span>
               <h2 className="font-heading text-2xl sm:text-3xl text-white uppercase tracking-tight">
                 Your Chair is Requested
@@ -189,7 +188,7 @@ export default function BookingForm() {
         {/* Appointment Recap Card */}
         <div className="bg-black/60 rounded-2xl p-6 border border-white/10 space-y-4">
           <span className="font-poppins text-[11px] uppercase tracking-wider text-neutral-400 block pb-2 border-b border-white/10 font-semibold">
-            Appointment Specifications
+            Booking Details
           </span>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 font-sans text-sm">
@@ -208,7 +207,7 @@ export default function BookingForm() {
               </p>
             </div>
             <div>
-              <span className="text-[11px] font-poppins text-neutral-400 uppercase tracking-wider block font-medium">Requested Date & Window</span>
+              <span className="text-[11px] font-poppins text-neutral-400 uppercase tracking-wider block font-medium">Requested Date & Time</span>
               <p className="text-white font-medium">
                 {successData.booking.date} · {successData.booking.timeWindow}
               </p>
@@ -216,25 +215,25 @@ export default function BookingForm() {
           </div>
         </div>
 
-        <div className="space-y-3 font-sans text-xs sm:text-sm text-neutral-300 leading-relaxed">
+        <div className="space-y-2 font-sans text-xs sm:text-sm text-neutral-300 leading-relaxed">
           <p>
-            A confirmation record has been generated. Our team at 33 Newman Street is reviewing your booking and will email your confirmation shortly.
+            A confirmation record has been generated. Our team at 33 Newman Street will review and email your confirmation details.
           </p>
           <p className="font-poppins text-xs text-neutral-400">
-            Need urgent adjustments or earlier availability? Telephone directly: <a href="tel:02076379288" className="text-emerald-400 hover:underline">020 7637 9288</a>.
+            Questions or urgent adjustments? Call us: <a href="tel:02076379288" className="text-emerald-400 hover:underline">020 7637 9288</a>.
           </p>
         </div>
 
         <div className="pt-4 flex flex-wrap items-center gap-4 border-t border-white/10">
           <button
             onClick={handleReset}
-            className="inline-flex items-center justify-center bg-emerald-500 text-black px-8 py-3.5 rounded-full font-btn font-bold text-xs uppercase tracking-[0.16em] hover:bg-emerald-400 transition-all hover:scale-105"
+            className="inline-flex items-center justify-center bg-emerald-500 text-black px-8 py-3.5 rounded-full font-btn font-bold text-xs uppercase tracking-wider hover:bg-emerald-400 transition-all hover:scale-105"
           >
             Book Another Appointment
           </button>
           <Link
             href="/"
-            className="inline-flex items-center justify-center border border-white/20 text-white px-8 py-3.5 rounded-full font-btn text-xs uppercase tracking-[0.16em] hover:bg-white/10 transition-colors"
+            className="inline-flex items-center justify-center border border-white/20 text-white px-8 py-3.5 rounded-full font-btn text-xs uppercase tracking-wider hover:bg-white/10 transition-colors"
           >
             Return to Homepage
           </Link>
@@ -243,27 +242,27 @@ export default function BookingForm() {
     );
   }
 
-  // ================= FORM VIEW =================
+  // ================= CLEAN FORM VIEW =================
   return (
-    <div className="bg-[#0d0d0d] p-7 sm:p-10 md:p-12 rounded-3xl sm:rounded-[36px] border border-white/10 shadow-2xl space-y-8">
+    <div className="bg-[#0d0d0d] p-7 sm:p-10 md:p-12 rounded-3xl sm:rounded-[36px] border border-white/10 shadow-2xl space-y-7">
       
-      {/* Top Card Bar */}
+      {/* Header Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-white/10 gap-3">
         <div>
-          <span className="font-poppins text-xs uppercase tracking-[0.16em] text-white font-semibold">
-            Barber Shop Booking Request
-          </span>
-          <p className="font-sans text-xs text-neutral-400 mt-0.5">
-            33 Newman Street, Fitzrovia W1T 1PY · 020 7637 9288
+          <h2 className="font-heading text-2xl sm:text-3xl text-white uppercase tracking-tight">
+            Book an Appointment
+          </h2>
+          <p className="font-sans text-xs sm:text-sm text-neutral-400 mt-1">
+            33 Newman Street, Fitzrovia W1 · Instant confirmation by email
           </p>
         </div>
-        <span className="inline-flex items-center gap-2 font-poppins text-[10px] uppercase tracking-wider text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20 self-start sm:self-auto font-medium">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span className="inline-flex items-center gap-2 font-poppins text-[10px] uppercase tracking-wider text-emerald-400 bg-emerald-500/10 px-3 py-1.5 rounded-full border border-emerald-500/20 self-start sm:self-auto font-medium">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
           Daily Chairs Open
         </span>
       </div>
 
-      {/* Error alert if any */}
+      {/* Error notification */}
       {status === 'error' && errorMessage && (
         <div className="p-4 rounded-2xl bg-red-500/10 border border-red-500/30 text-red-300 text-xs flex items-center gap-3 font-poppins">
           <FaExclamationCircle className="shrink-0 text-red-400" size={16} />
@@ -271,12 +270,11 @@ export default function BookingForm() {
         </div>
       )}
 
-      <form onSubmit={handleSubmit} noValidate className="space-y-6">
+      <form onSubmit={handleSubmit} noValidate className="space-y-5">
         
-        {/* Name & Email Row */}
+        {/* Row 1: Name & Email */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           
-          {/* Full Name Field */}
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <label htmlFor="booking-name" className="text-[11px] font-poppins uppercase tracking-wider text-neutral-300 font-medium block">
@@ -299,11 +297,10 @@ export default function BookingForm() {
                   ? 'border-red-500 focus:border-red-400' 
                   : 'border-white/15 focus:border-emerald-500'
               }`}
-              placeholder="e.g. Thomas Kelly" 
+              placeholder="Your full name" 
             />
           </div>
 
-          {/* Email Address Field */}
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <label htmlFor="booking-email" className="text-[11px] font-poppins uppercase tracking-wider text-neutral-300 font-medium block">
@@ -326,17 +323,16 @@ export default function BookingForm() {
                   ? 'border-red-500 focus:border-red-400' 
                   : 'border-white/15 focus:border-emerald-500'
               }`}
-              placeholder="e.g. thomas@domain.co.uk" 
+              placeholder="name@example.com" 
             />
           </div>
 
         </div>
         
-        {/* Telephone & Unified Services Dropdown */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+        {/* Row 2: Telephone & Service */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           
-          {/* Telephone */}
-          <div className="space-y-2 sm:col-span-1">
+          <div className="space-y-2">
             <label htmlFor="booking-phone" className="text-[11px] font-poppins uppercase tracking-wider text-neutral-300 font-medium block">
               Telephone / Mobile
             </label>
@@ -347,17 +343,15 @@ export default function BookingForm() {
               value={formData.telephone}
               onChange={handleChange}
               className="w-full bg-black/60 border border-white/15 p-4 text-white text-sm focus:outline-none focus:border-emerald-500 transition-colors rounded-2xl font-sans placeholder:text-neutral-600" 
-              placeholder="+44 7..." 
+              placeholder="e.g. 07123 456789" 
             />
           </div>
 
-          {/* Synchronized Service Dropdown (Strictly matches website menu) */}
-          <div className="space-y-2 sm:col-span-2">
+          <div className="space-y-2">
             <div className="flex items-center justify-between">
               <label htmlFor="booking-service" className="text-[11px] font-poppins uppercase tracking-wider text-neutral-300 font-medium block">
-                Select Your Service <span className="text-emerald-400">*</span>
+                Service <span className="text-emerald-400">*</span>
               </label>
-              <span className="text-[10px] font-poppins font-medium text-emerald-400">{SERVICES.length} Available Services</span>
             </div>
             <select 
               id="booking-service"
@@ -365,7 +359,7 @@ export default function BookingForm() {
               value={formData.serviceId}
               onChange={handleChange}
               required
-              className="w-full bg-black/60 border border-white/15 p-4 text-white text-sm focus:outline-none focus:border-emerald-500 transition-colors rounded-2xl font-sans"
+              className="w-full bg-black/60 border border-white/15 p-4 text-white text-sm focus:outline-none focus:border-emerald-500 transition-colors rounded-2xl font-sans cursor-pointer"
             >
               {SERVICES.map((srv) => (
                 <option key={srv.id} value={srv.id} className="bg-[#111] text-white py-2 font-sans">
@@ -373,27 +367,13 @@ export default function BookingForm() {
                 </option>
               ))}
             </select>
-
-            {/* Real-time Description of Selected Service */}
-            {(() => {
-              const currentSrv = SERVICES.find(s => s.id === formData.serviceId) || SERVICES[0];
-              return currentSrv ? (
-                <div className="mt-2.5 p-3.5 rounded-xl bg-white/[0.03] border border-white/10 text-neutral-300 font-sans text-xs leading-relaxed">
-                  <span className="text-emerald-400 font-poppins text-[10px] uppercase tracking-wider block mb-1 font-semibold">
-                    {currentSrv.name} · {currentSrv.price} · {currentSrv.time}
-                  </span>
-                  {currentSrv.fullDesc}
-                </div>
-              ) : null;
-            })()}
           </div>
 
         </div>
 
-        {/* Date & Time Window */}
+        {/* Row 3: Date & Preferred Session Window */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           
-          {/* Date Picker */}
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <label htmlFor="booking-date" className="text-[11px] font-poppins uppercase tracking-wider text-neutral-300 font-medium block">
@@ -412,7 +392,7 @@ export default function BookingForm() {
               onChange={handleChange}
               onBlur={() => handleBlur('date')}
               required
-              className={`w-full bg-black/60 border p-4 text-white text-sm focus:outline-none transition-colors rounded-2xl font-sans ${
+              className={`w-full bg-black/60 border p-4 text-white text-sm focus:outline-none transition-colors rounded-2xl font-sans cursor-pointer ${
                 touched.date && errors.date 
                   ? 'border-red-500 focus:border-red-400' 
                   : 'border-white/15 focus:border-emerald-500'
@@ -420,27 +400,26 @@ export default function BookingForm() {
             />
           </div>
 
-          {/* Time Window */}
           <div className="space-y-2">
             <label htmlFor="booking-time" className="text-[11px] font-poppins uppercase tracking-wider text-neutral-300 font-medium block">
-              Preferred Session Window
+              Preferred Time Slot
             </label>
             <select 
               id="booking-time"
               name="timeWindow"
               value={formData.timeWindow}
               onChange={handleChange}
-              className="w-full bg-black/60 border border-white/15 p-4 text-white text-sm focus:outline-none focus:border-emerald-500 transition-colors rounded-2xl font-sans"
+              className="w-full bg-black/60 border border-white/15 p-4 text-white text-sm focus:outline-none focus:border-emerald-500 transition-colors rounded-2xl font-sans cursor-pointer"
             >
-              <option value="morning">Morning Unhurried (10:00 — 12:30)</option>
-              <option value="midday">Midday Tailored (12:30 — 16:00)</option>
-              <option value="evening">Evening Restoration (16:00 — 20:00)</option>
+              <option value="morning">Morning (10:00 am — 12:30 pm)</option>
+              <option value="afternoon">Afternoon (12:30 pm — 4:00 pm)</option>
+              <option value="evening">Evening (4:00 pm — 8:00 pm)</option>
             </select>
           </div>
 
         </div>
 
-        {/* Notes */}
+        {/* Row 4: Notes / Barber Preference */}
         <div className="space-y-2">
           <label htmlFor="booking-notes" className="text-[11px] font-poppins uppercase tracking-wider text-neutral-300 font-medium block">
             Special Requests or Barber Preference (Optional)
@@ -448,11 +427,11 @@ export default function BookingForm() {
           <textarea 
             id="booking-notes"
             name="notes"
-            rows={3} 
+            rows={2} 
             value={formData.notes}
             onChange={handleChange}
             className="w-full bg-black/60 border border-white/15 p-4 text-white text-sm focus:outline-none focus:border-emerald-500 transition-colors rounded-2xl font-sans resize-none placeholder:text-neutral-600" 
-            placeholder="e.g. Master Talib requested, scissor-only preference, or specific tea/coffee choice..."
+            placeholder="e.g. Talib M requested, scissor-only cut, beard shaping details..."
           ></textarea>
         </div>
 
@@ -460,13 +439,13 @@ export default function BookingForm() {
         <div className="pt-3 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10">
           <div className="flex items-center gap-2 font-poppins text-xs text-neutral-400 font-medium">
             <FaClock size={11} className="text-emerald-400" />
-            <span>Instant Booking · Confirmation by Email</span>
+            <span>Instant Confirmation · No Prepayment Required</span>
           </div>
 
           <button 
             type="submit" 
             disabled={status === 'submitting'}
-            className={`w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-emerald-500 text-black px-10 sm:px-12 py-4 rounded-full font-btn font-bold text-xs uppercase tracking-[0.2em] transition-all shadow-md ${
+            className={`w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-emerald-500 text-black px-10 sm:px-12 py-4 rounded-full font-btn font-bold text-xs uppercase tracking-wider transition-all ${
               status === 'submitting' 
                 ? 'opacity-75 cursor-not-allowed' 
                 : 'hover:bg-emerald-400 hover:scale-[1.02] active:scale-95'
@@ -478,7 +457,7 @@ export default function BookingForm() {
                 <span>Securing Your Chair...</span>
               </>
             ) : (
-              <span>Confirm Booking Request</span>
+              <span>Confirm Booking</span>
             )}
           </button>
         </div>

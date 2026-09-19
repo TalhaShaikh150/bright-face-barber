@@ -56,7 +56,7 @@ export default function Home() {
               <div className="pt-2">
                 <Link 
                   href="/services" 
-                  className="inline-flex items-center justify-center gap-3 bg-emerald-500 text-black px-8 sm:px-10 py-4 text-xs font-btn uppercase tracking-[0.2em] font-bold rounded-full hover:bg-emerald-400 transition-all duration-300 shadow-md hover:scale-105 active:scale-95 group"
+                  className="inline-flex items-center justify-center gap-3 bg-emerald-500 text-black px-8 sm:px-10 py-4 text-xs font-btn uppercase tracking-wider font-bold rounded-full hover:bg-emerald-400 transition-all duration-300 hover:scale-105 active:scale-95 group"
                 >
                   <span>View Full Menu</span>
                   <FaArrowRight size={11} className="transition-transform group-hover:translate-x-1" />

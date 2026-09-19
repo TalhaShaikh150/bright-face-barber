@@ -18,9 +18,15 @@ export default function AboutSection() {
           className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-8 sm:pb-10"
         >
           <div className="space-y-3">
-            <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[6.5rem] font-heading font-normal leading-[0.92] md:leading-[0.88] tracking-tight uppercase text-white">
-              Bright Face <br />
-              <span className="italic font-light text-emerald-400">Barber</span>
+            <div className="flex items-center gap-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              <span className="font-poppins text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-emerald-400 font-semibold block">
+                About Bright Face Barber
+              </span>
+            </div>
+            <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-heading font-normal leading-[0.92] md:leading-[0.88] tracking-tight uppercase text-white">
+              Welcome to <br />
+              <span className="italic font-light text-emerald-400">Bright Face Barber</span>
             </h2>
           </div>
 
@@ -34,7 +40,7 @@ export default function AboutSection() {
         {/* 2-Column Editorial Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
-          {/* Left: Philosophy & Experience */}
+          {/* Left: Clean Focused Description */}
           <motion.div 
             initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -42,36 +48,39 @@ export default function AboutSection() {
             transition={{ duration: 0.8, delay: 0.15 }}
             className="lg:col-span-6 space-y-6"
           >
-            <div className="space-y-2">
-              <span className="font-poppins text-xs uppercase tracking-[0.2em] text-emerald-400 font-semibold block">
-                Our Philosophy
-              </span>
-              <h3 className="font-heading text-2xl sm:text-3xl md:text-4xl text-white uppercase tracking-tight">
-                Self-Expression & <span className="italic font-light text-emerald-400">Craftsmanship</span>
-              </h3>
-            </div>
+            <div className="space-y-4 text-neutral-300 font-sans text-sm sm:text-base md:text-lg leading-relaxed font-normal">
+              <p className="text-white font-medium text-base sm:text-lg md:text-xl leading-relaxed">
+                At Bright Face Barber, we believe a great haircut is more than just a trim, it&apos;s an experience.
+              </p>
 
-            <p className="font-sans text-sm sm:text-base md:text-lg text-neutral-300 leading-relaxed font-normal">
-              At Bright Face Barber, we understand that grooming is as much about self-expression as it is about style. Our approach is rooted in a commitment to craftsmanship and customer satisfaction. We take the time to listen to your needs and offer tailored advice, ensuring you receive a look that complements your personality and lifestyle. With a focus on precision and detail, we aim to enhance your natural features and bring out the best in you.
-            </p>
+              <p>
+                Nestled in the heart of London, our barber shop is dedicated to delivering top-notch grooming with a personal touch.
+              </p>
 
-            {/* The Bright Face Experience Highlight Box */}
-            <div className="p-6 sm:p-7 rounded-3xl bg-[#0d0d0d] border border-white/10 space-y-3 shadow-xl">
-              <span className="font-poppins text-xs uppercase tracking-[0.18em] text-emerald-400 font-semibold block">
-                The Bright Face Experience
-              </span>
-              <p className="font-sans text-xs sm:text-sm text-neutral-300 leading-relaxed">
-                Step into Bright Face Barber and experience a blend of tradition and innovation. Our welcoming atmosphere, complete with vintage décor and modern amenities, sets the stage for a relaxing and enjoyable visit. From the moment you walk through our doors, you’ll be greeted by friendly faces and a professional team ready to make your grooming experience exceptional. Enjoy a complimentary beverage, kick back, and let us take care of the rest.
+              <p>
+                Our talented team of barbers combines classic techniques with modern flair, ensuring you leave not only looking sharp but feeling confident.
+              </p>
+
+              <p className="text-neutral-200">
+                Whether you’re here for a timeless cut, a fresh fade, or a meticulously crafted beard trim, we’ve got you covered.
               </p>
             </div>
 
-            <div className="pt-2">
+            <div className="pt-4 flex flex-col sm:flex-row items-start sm:items-center gap-5">
+              <Link 
+                href="/booking"
+                className="inline-flex items-center justify-center gap-3 bg-emerald-500 hover:bg-emerald-400 text-black px-8 py-3.5 rounded-full font-btn font-bold text-xs uppercase tracking-wider transition-all hover:scale-105 active:scale-95"
+              >
+                <span>Book Appointment</span>
+                <FaArrowRight size={11} />
+              </Link>
+
               <Link 
                 href="/about"
-                className="inline-flex items-center gap-2.5 font-poppins text-xs uppercase tracking-wider text-emerald-400 hover:text-emerald-300 transition-colors font-semibold group"
+                className="inline-flex items-center gap-2 font-poppins text-xs uppercase tracking-wider text-neutral-300 hover:text-emerald-400 transition-colors font-medium group py-2"
               >
-                <span>Read Our Story & Meet Talib</span>
-                <FaArrowRight size={11} className="transition-transform group-hover:translate-x-1" />
+                <span>Read Full Story & Meet Talib</span>
+                <FaArrowRight size={10} className="transition-transform group-hover:translate-x-1 text-emerald-400" />
               </Link>
             </div>
           </motion.div>
@@ -93,12 +102,6 @@ export default function AboutSection() {
                 sizes="(max-width: 1024px) 100vw, 600px"
                 priority
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-              <div className="absolute bottom-5 left-5 right-5 p-4 rounded-2xl bg-black/75 backdrop-blur-md border border-white/15">
-                <p className="font-poppins text-[11px] uppercase tracking-wider text-neutral-300 font-medium">
-                  Vintage Décor · Modern Amenities · 33 Newman Street
-                </p>
-              </div>
             </div>
           </motion.div>
 

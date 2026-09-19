@@ -15,7 +15,7 @@ export default function FontSelector() {
         <button
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Open font typography selector"
-          className="flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-[#0d0d0d] text-white border border-white/20 hover:border-emerald-400 shadow-[0_10px_35px_rgba(0,0,0,0.8)] backdrop-blur-xl transition-all duration-300 hover:scale-105 group"
+          className="flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-[#0d0d0d] text-white border border-white/20 hover:border-emerald-400 backdrop-blur-xl transition-all duration-300 hover:scale-105 group"
         >
           <span className="w-6 h-6 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 flex items-center justify-center text-[10px] font-poppins group-hover:bg-emerald-500 group-hover:text-black transition-colors font-semibold">
             Aa
@@ -90,7 +90,7 @@ export default function FontSelector() {
                       onClick={() => setActiveFontById(font.id)}
                       className={`w-full text-left p-3.5 sm:p-4 rounded-2xl border transition-all duration-200 group flex items-start justify-between gap-4 ${
                         isSelected
-                          ? 'bg-emerald-500/10 border-emerald-500/50 shadow-sm'
+                          ? 'bg-emerald-500/10 border-emerald-500/50'
                           : 'bg-white/[0.02] border-white/10 hover:bg-white/[0.05] hover:border-white/20'
                       }`}
                     >
@@ -128,7 +128,7 @@ export default function FontSelector() {
                       <div className="shrink-0 mt-1">
                         <span className={`w-6 h-6 rounded-full flex items-center justify-center transition-all ${
                           isSelected
-                            ? 'bg-emerald-500 text-black shadow-sm'
+                            ? 'bg-emerald-500 text-black'
                             : 'border border-white/20 text-transparent group-hover:border-white/40'
                         }`}>
                           <FaCheck size={10} />

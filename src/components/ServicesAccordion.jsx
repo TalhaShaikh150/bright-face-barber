@@ -48,7 +48,7 @@ export default function ServicesAccordion({ isDark = false }) {
                 <span className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full border flex items-center justify-center transition-transform duration-300 ${
                   isOpen 
                     ? isDark 
-                      ? 'border-emerald-400 bg-emerald-500 text-black rotate-180 shadow-sm' 
+                      ? 'border-emerald-400 bg-emerald-500 text-black rotate-180' 
                       : 'border-black bg-black text-white rotate-180' 
                     : isDark 
                       ? 'border-white/20 text-white/60 group-hover:border-emerald-400 group-hover:text-emerald-400' 
@@ -78,7 +78,7 @@ export default function ServicesAccordion({ isDark = false }) {
                     <div className="pt-2 flex items-center gap-4">
                       <Link
                         href={`/booking?service=${service.id}`}
-                        className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-black px-6 py-2.5 rounded-full font-btn font-bold text-xs uppercase tracking-[0.16em] transition-all hover:scale-105 active:scale-95 shadow-md"
+                        className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-black px-6 py-2.5 rounded-full font-btn font-bold text-xs uppercase tracking-wider transition-all hover:scale-105 active:scale-95"
                       >
                         <span>Book This Service</span>
                         <FaArrowRight size={10} />

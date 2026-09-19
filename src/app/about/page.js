@@ -24,8 +24,8 @@ export default function About() {
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <Image 
-              src="/images/about-cover.jpg"
-              alt="Bright Face Barber - 33 Newman Street Shop Interior Cover"
+              src="/images/about.jpg"
+              alt="Bright Face Barber - 33 Newman Street Shop Atmosphere"
               fill
               className="object-cover object-center brightness-[0.82] contrast-[1.08] saturate-[1.05]"
               priority
@@ -72,22 +72,16 @@ export default function About() {
       <section className="py-20 sm:py-28 px-5 sm:px-8 md:px-14 bg-[#000000]">
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
-          {/* Left: Atmospheric Photography */}
+          {/* Left: Atmospheric Photography of Barber Craftsmanship (service-2) */}
           <AnimatedSection className="lg:col-span-6 relative aspect-[4/3] rounded-3xl sm:rounded-[36px] overflow-hidden border border-white/15 shadow-2xl bg-[#0d0d0d] group">
             <Image 
-              src="/images/about.jpg" 
-              alt="Bright Face Barber - 33 Newman Street Lounge & Atmosphere" 
+              src="/images/service-2.jpg" 
+              alt="Bright Face Barber - Craftsmanship & Philosophy" 
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-105" 
               sizes="(max-width: 1024px) 100vw, 650px"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
-            <div className="absolute bottom-5 left-5 right-5 p-4 rounded-2xl bg-black/75 backdrop-blur-md border border-white/15">
-              <p className="font-poppins text-xs uppercase tracking-wider text-neutral-300 font-medium">
-                Vintage Décor & Modern Amenities · Relaxing Lounge
-              </p>
-            </div>
           </AnimatedSection>
           
           {/* Right: Philosophy & Experience Text */}
@@ -221,7 +215,7 @@ export default function About() {
             <div className="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
               <Link 
                 href="/booking"
-                className="inline-flex items-center justify-center gap-3 bg-emerald-500 text-black px-10 py-4 rounded-full font-btn font-bold text-xs uppercase tracking-[0.2em] hover:bg-emerald-400 transition-all hover:scale-105 active:scale-95 shadow-md text-center"
+                className="inline-flex items-center justify-center gap-3 bg-emerald-500 text-black px-10 py-4 rounded-full font-btn font-bold text-xs uppercase tracking-wider hover:bg-emerald-400 transition-all hover:scale-105 active:scale-95 text-center"
               >
                 <span>Book an Appointment</span>
                 <FaArrowRight size={11} />

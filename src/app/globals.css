@@ -18,7 +18,7 @@
   --background: var(--color-brand-light);
   --foreground: var(--color-brand-dark);
   --font-heading: 'Cormorant Garamond', Georgia, serif;
-  --font-button: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
+  --font-button: 'Poppins', var(--font-poppins-family), sans-serif;
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: 'Poppins', var(--font-poppins-family), sans-serif;
   --font-poppins: 'Poppins', var(--font-poppins-family), sans-serif;
@@ -37,12 +37,31 @@ label {
   font-family: var(--font-poppins, 'Poppins', sans-serif) !important;
 }
 
-/* Dynamic Button Typography Class — Responds live to Font Studio selection */
+/* Button Typography & Styling — Modern Clean Poppins */
 .font-btn,
 .btn-font,
 button,
+[role="button"],
+a[href*="/booking"],
+a[href*="/services"] {
+  font-family: var(--font-button, 'Poppins', sans-serif) !important;
+  letter-spacing: 0.05em;
+}
+
+/* Zero Button Glow / Flat Aesthetic Across All Buttons & Action CTAs */
+button,
+button:hover,
+button:focus,
+button:active,
+.font-btn,
+.font-btn:hover,
+.font-btn:focus,
+.font-btn:active,
+.btn-font,
 [role="button"] {
-  font-family: var(--font-button, var(--font-heading)) !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  filter: none !important;
 }
 
 html {

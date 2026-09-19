@@ -2,20 +2,19 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { FaArrowRight, FaPhoneAlt } from 'react-icons/fa';
-import { SERVICES } from '@/data/services';
+import { FaArrowRight, FaPhoneAlt, FaClock, FaCheck } from 'react-icons/fa';
 
 export default function BookingSection() {
-  // Use the top 3 popular services from our centralized services source
-  const featuredServices = [
-    SERVICES.find(s => s.id === "wash-cut-style") || SERVICES[0],
-    SERVICES.find(s => s.id === "hot-towel-wet-shave") || SERVICES[5],
-    SERVICES.find(s => s.id === "haircut-beard-trim") || SERVICES[7]
+  const perks = [
+    "One-on-one personalized consultation",
+    "Precision haircut & beard grooming",
+    "Complimentary hot & cold beverages",
+    "Instant email booking confirmation",
   ];
 
   return (
     <section className="py-20 sm:py-28 md:py-36 px-5 sm:px-8 md:px-14 bg-[#000000] text-white relative border-b border-white/10 overflow-hidden">
-      <div className="max-w-[1440px] mx-auto space-y-12 sm:space-y-16 relative z-10">
+      <div className="max-w-[1440px] mx-auto relative z-10">
         
         {/* Editorial Section Header */}
         <motion.div 
@@ -23,35 +22,35 @@ export default function BookingSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-8 sm:pb-10"
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-8 sm:pb-10 mb-12 sm:mb-16"
         >
           <div className="space-y-3">
             <div className="flex items-center gap-3">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-              <span className="font-poppins text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-emerald-400 font-semibold">
+              <span className="font-poppins text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-emerald-400 font-semibold block">
                 Book Your Visit · Fitzrovia W1
               </span>
             </div>
-            <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[6.5rem] font-heading font-normal leading-[0.92] md:leading-[0.88] tracking-tight uppercase text-white">
+            <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-heading font-normal leading-[0.92] md:leading-[0.88] tracking-tight uppercase text-white">
               Reserve Your <br />
               <span className="italic font-light text-emerald-400">Chair</span>
             </h2>
           </div>
 
-          <div className="md:text-right max-w-sm space-y-2">
-            <p className="font-sans text-neutral-300 text-xs sm:text-sm leading-relaxed">
+          <div className="md:text-right max-w-md space-y-2">
+            <p className="font-sans text-neutral-300 text-sm sm:text-base leading-relaxed">
               Reserve your spot at our barber shop for a top-notch grooming experience. Your fresh look is just an appointment away!
             </p>
-            <p className="font-poppins text-[11px] text-neutral-400 uppercase tracking-wider font-medium">
+            <p className="font-poppins text-xs text-emerald-400 uppercase tracking-wider font-semibold">
               33 Newman Street · London W1T 1PY
             </p>
           </div>
         </motion.div>
 
-        {/* 2-Column Clean Editorial Reservation Experience */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        {/* 2-Column Clean Reservation Experience */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           
-          {/* Left Column: Key Services & Booking Action (7 Cols) */}
+          {/* Left Column: Focused, Clean Booking Details */}
           <motion.div 
             initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -59,56 +58,58 @@ export default function BookingSection() {
             transition={{ duration: 0.8 }}
             className="lg:col-span-7 space-y-8"
           >
-            
-            {/* Clean Services Preview */}
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <span className="font-poppins text-xs uppercase tracking-[0.16em] text-neutral-400 block font-semibold">
-                  Popular Grooming Services
-                </span>
-                <span className="font-poppins text-[10px] text-emerald-400 uppercase tracking-wider font-medium">
-                  Tap to select & book
+            {/* Value Highlights Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {perks.map((perk, idx) => (
+                <div 
+                  key={idx}
+                  className="flex items-center gap-3 p-4 rounded-2xl bg-[#0d0d0d] border border-white/10"
+                >
+                  <span className="w-6 h-6 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0">
+                    <FaCheck size={9} />
+                  </span>
+                  <span className="font-sans text-xs sm:text-sm text-neutral-300 font-normal">
+                    {perk}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            {/* Studio Hours Card */}
+            <div className="p-6 sm:p-7 rounded-3xl bg-[#0d0d0d] border border-white/10 space-y-5">
+              <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                <div className="flex items-center gap-2.5">
+                  <FaClock className="text-emerald-400" size={13} />
+                  <span className="font-poppins text-xs uppercase tracking-wider text-white font-semibold">
+                    Studio Hours
+                  </span>
+                </div>
+                <span className="font-poppins text-[11px] text-emerald-400 font-medium">
+                  Appointments & Walk-ins
                 </span>
               </div>
 
-              <div className="divide-y divide-white/10">
-                {featuredServices.map((service) => (
-                  <Link
-                    key={service.id}
-                    href={`/booking?service=${service.id}`}
-                    className="py-4 sm:py-5 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 group hover:bg-white/[0.03] rounded-xl px-2 -mx-2 transition-all block"
-                  >
-                    <div className="space-y-1 max-w-lg">
-                      <div className="flex items-center gap-3">
-                        <h3 className="font-sans text-base sm:text-lg font-bold tracking-tight text-white group-hover:text-emerald-300 transition-colors">
-                          {service.name}
-                        </h3>
-                        <span className="font-poppins text-[10px] text-neutral-400 uppercase tracking-wider font-medium">
-                          {service.time}
-                        </span>
-                      </div>
-                      <p className="font-sans text-xs sm:text-[13px] text-neutral-400 leading-relaxed">
-                        {service.shortDesc}
-                      </p>
-                    </div>
-                    <div className="flex items-center gap-3 shrink-0 self-start sm:self-auto">
-                      <span className="font-poppins text-base sm:text-lg font-bold text-emerald-400">
-                        {service.price}
-                      </span>
-                      <span className="font-poppins text-xs text-neutral-400 group-hover:text-emerald-400 transition-colors font-medium">
-                        Book →
-                      </span>
-                    </div>
-                  </Link>
-                ))}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 font-poppins text-xs">
+                <div className="space-y-1">
+                  <span className="text-neutral-400 block text-[11px]">Mon – Fri</span>
+                  <span className="text-white font-semibold">10:00 am – 8:00 pm</span>
+                </div>
+                <div className="space-y-1">
+                  <span className="text-neutral-400 block text-[11px]">Saturday</span>
+                  <span className="text-white font-semibold">10:00 am – 7:00 pm</span>
+                </div>
+                <div className="space-y-1">
+                  <span className="text-neutral-400 block text-[11px]">Sunday</span>
+                  <span className="text-white font-semibold">11:00 am – 5:00 pm</span>
+                </div>
               </div>
             </div>
 
             {/* Direct Booking Actions */}
-            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6 border-t border-white/10">
+            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6">
               <Link 
                 href="/booking" 
-                className="inline-flex items-center justify-center gap-3 bg-emerald-500 text-black px-8 sm:px-10 py-4 text-xs font-btn uppercase tracking-[0.2em] font-bold rounded-full hover:bg-emerald-400 transition-all duration-300 shadow-md hover:scale-[1.02] active:scale-95 group text-center"
+                className="inline-flex items-center justify-center gap-3 bg-emerald-500 text-black px-10 py-4 text-xs font-btn uppercase tracking-wider font-bold rounded-full hover:bg-emerald-400 transition-all duration-300 hover:scale-[1.02] active:scale-95 group text-center"
               >
                 <span>Book Appointment</span>
                 <FaArrowRight size={11} className="transition-transform group-hover:translate-x-1" />
@@ -116,7 +117,7 @@ export default function BookingSection() {
               
               <a 
                 href="tel:02076379288" 
-                className="inline-flex items-center justify-center gap-2.5 font-poppins text-xs uppercase tracking-wider text-neutral-300 hover:text-emerald-400 transition-colors py-3.5 px-5 rounded-full bg-[#0d0d0d] border border-white/15 hover:border-emerald-500/40 font-medium"
+                className="inline-flex items-center justify-center gap-2.5 font-poppins text-xs uppercase tracking-wider text-neutral-300 hover:text-emerald-400 transition-colors py-4 px-6 rounded-full bg-[#0d0d0d] border border-white/15 hover:border-emerald-500/40 font-medium"
               >
                 <FaPhoneAlt size={10} className="text-emerald-400" />
                 <span>Call Us: 020 7637 9288</span>
@@ -129,7 +130,7 @@ export default function BookingSection() {
 
           </motion.div>
 
-          {/* Right Column: Barber Shop Photograph (5 Cols) */}
+          {/* Right Column: Barber Shop Photograph */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -146,7 +147,7 @@ export default function BookingSection() {
                 sizes="(max-width: 1024px) 100vw, 500px"
                 priority
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
             </div>
           </motion.div>
 

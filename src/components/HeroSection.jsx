@@ -99,7 +99,7 @@ export default function HeroSection() {
           <div className="pt-4 sm:pt-6 pointer-events-auto">
             <Link
               href="/booking"
-              className="inline-flex items-center justify-center gap-3 bg-emerald-400 hover:bg-emerald-300 text-black px-8 sm:px-12 py-3.5 sm:py-4.5 rounded-full font-btn font-bold text-xs sm:text-sm uppercase tracking-[0.2em] transition-all duration-300 shadow-[0_10px_35px_rgba(16,185,129,0.35)] hover:scale-105 active:scale-95 group"
+              className="inline-flex items-center justify-center gap-3 bg-emerald-400 hover:bg-emerald-300 text-black px-8 sm:px-12 py-3.5 sm:py-4.5 rounded-full font-btn font-bold text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 hover:scale-105 active:scale-95 group"
             >
               <span>Book An Appointment</span>
               <FaArrowRight size={12} className="transition-transform group-hover:translate-x-1" />

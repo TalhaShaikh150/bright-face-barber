@@ -107,9 +107,9 @@ export function FontProvider({ children }) {
     } catch (e) {
       // ignore localStorage errors
     }
-    // Lock brand typography default: Cormorant Garamond
+    // Lock brand typography default: Cormorant Garamond for headings, Poppins for buttons
     document.documentElement.style.setProperty('--font-heading', "'Cormorant Garamond', Georgia, serif");
-    document.documentElement.style.setProperty('--font-button', "'Cormorant Garamond', Georgia, serif");
+    document.documentElement.style.setProperty('--font-button', "'Poppins', sans-serif");
   }, []);
 
   return (
