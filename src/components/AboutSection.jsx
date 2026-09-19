@@ -89,15 +89,16 @@ export default function AboutSection() {
           <motion.div 
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.25 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             className="lg:col-span-6 flex justify-center w-full"
           >
-            <div className="relative w-full aspect-[4/3] rounded-3xl sm:rounded-[36px] overflow-hidden shadow-2xl border border-white/15 group bg-[#0d0d0d]">
+            <div className="relative w-full aspect-[4/3] min-h-[300px] sm:min-h-[380px] md:min-h-[440px] rounded-3xl sm:rounded-[36px] overflow-hidden shadow-2xl border border-white/15 group bg-[#0d0d0d]">
               <Image
                 src="/images/about.jpg"
                 alt="Bright Face Barber - 33 Newman Street Barber Shop Lounge"
                 fill
+                unoptimized
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
                 sizes="(max-width: 1024px) 100vw, 600px"
                 priority

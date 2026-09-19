@@ -3,11 +3,107 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { SERVICES } from '@/data/services';
+import CalendarPicker from '@/components/CalendarPicker';
 import { FaCheckCircle, FaExclamationCircle, FaSpinner, FaClock } from 'react-icons/fa';
+
+// Available discrete appointment times at 33 Newman Street
+export const TIME_SLOTS = [
+  { id: '10:00', label: '10:00 am', hour: 10, minute: 0 },
+  { id: '11:00', label: '11:00 am', hour: 11, minute: 0 },
+  { id: '12:00', label: '12:00 pm', hour: 12, minute: 0 },
+  { id: '13:00', label: '1:00 pm', hour: 13, minute: 0 },
+  { id: '14:00', label: '2:00 pm', hour: 14, minute: 0 },
+  { id: '15:00', label: '3:00 pm', hour: 15, minute: 0 },
+  { id: '16:00', label: '4:00 pm', hour: 16, minute: 0 },
+  { id: '17:00', label: '5:00 pm', hour: 17, minute: 0 },
+  { id: '18:00', label: '6:00 pm', hour: 18, minute: 0 },
+  { id: '19:00', label: '7:00 pm', hour: 19, minute: 0 },
+];
+
+// Helper to determine slot availability and operating hours
+export const getSlotStatus = (slot, dateStr) => {
+  if (!slot) return { available: false, label: '' };
+  if (!dateStr) return { available: true, label: slot.label };
+
+  const [y, m, d] = dateStr.split('-').map(Number);
+  const selectedDate = new Date(y, m - 1, d);
+  selectedDate.setHours(0, 0, 0, 0);
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  // Past dates are strictly unavailable
+  if (selectedDate < today) {
+    return { available: false, label: `${slot.label} — Passed`, reason: 'passed' };
+  }
+
+  const dayOfWeek = selectedDate.getDay();
+
+  // Operating Hours checks:
+  // Sunday: 11:00 am — 5:00 pm (last appointment 4:00 pm)
+  if (dayOfWeek === 0) {
+    if (slot.hour < 11 || slot.hour >= 17) {
+      return { available: false, label: `${slot.label} — Studio Closed`, reason: 'closed' };
+    }
+  }
+  // Saturday: 10:00 am — 7:00 pm (last appointment 6:00 pm)
+  else if (dayOfWeek === 6) {
+    if (slot.hour < 10 || slot.hour >= 19) {
+      return { available: false, label: `${slot.label} — Studio Closed`, reason: 'closed' };
+    }
+  }
+  // Mon–Fri: 10:00 am — 8:00 pm (last appointment 7:00 pm)
+  else {
+    if (slot.hour < 10 || slot.hour >= 20) {
+      return { available: false, label: `${slot.label} — Studio Closed`, reason: 'closed' };
+    }
+  }
+
+  // Today checks: block past time slots
+  if (selectedDate.getTime() === today.getTime()) {
+    const now = new Date();
+    // Mark as passed if current time is past slot start
+    if (now.getHours() > slot.hour || (now.getHours() === slot.hour && now.getMinutes() >= slot.minute)) {
+      return { available: false, label: `${slot.label} — Passed`, reason: 'passed' };
+    }
+  }
+
+  return { available: true, label: slot.label };
+};
+
+// Compute earliest available day
+const getEarliestAvailableDate = () => {
+  const now = new Date();
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const dayOfWeek = today.getDay();
+  let lastSlotHour = 19;
+  if (dayOfWeek === 6) lastSlotHour = 18;
+  if (dayOfWeek === 0) lastSlotHour = 16;
+
+  // If past closing time today, earliest date is tomorrow
+  if (now.getHours() > lastSlotHour || (now.getHours() === lastSlotHour && now.getMinutes() > 15)) {
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const y = tomorrow.getFullYear();
+    const m = String(tomorrow.getMonth() + 1).padStart(2, '0');
+    const d = String(tomorrow.getDate()).padStart(2, '0');
+    return `${y}-${m}-${d}`;
+  }
+
+  const y = today.getFullYear();
+  const m = String(today.getMonth() + 1).padStart(2, '0');
+  const d = String(today.getDate()).padStart(2, '0');
+  return `${y}-${m}-${d}`;
+};
 
 export default function BookingForm() {
   const searchParams = useSearchParams();
   const serviceParam = searchParams.get('service');
+
+  const initialDate = getEarliestAvailableDate();
+  const firstSlot = TIME_SLOTS.find(s => getSlotStatus(s, initialDate).available)?.label || '10:00 am';
 
   // Form state
   const [formData, setFormData] = useState({
@@ -15,8 +111,8 @@ export default function BookingForm() {
     email: '',
     telephone: '',
     serviceId: SERVICES[0].id,
-    date: '',
-    timeWindow: 'morning',
+    date: initialDate,
+    timeWindow: firstSlot,
     notes: ''
   });
 
@@ -39,6 +135,21 @@ export default function BookingForm() {
     }
   }, [serviceParam]);
 
+  // When date changes, verify timeWindow is still valid and available
+  useEffect(() => {
+    if (!formData.date) return;
+
+    const currentSlotObj = TIME_SLOTS.find(s => s.label === formData.timeWindow);
+    const currentStatus = getSlotStatus(currentSlotObj, formData.date);
+
+    if (!currentStatus.available) {
+      const firstAvailable = TIME_SLOTS.find(s => getSlotStatus(s, formData.date).available);
+      if (firstAvailable) {
+        setFormData(prev => ({ ...prev, timeWindow: firstAvailable.label }));
+      }
+    }
+  }, [formData.date, formData.timeWindow]);
+
   // Real-time validation helper
   const validate = (data) => {
     const errs = {};
@@ -54,11 +165,25 @@ export default function BookingForm() {
     if (!data.date) {
       errs.date = 'Please select a date.';
     } else {
-      const selected = new Date(data.date);
+      const [y, m, d] = data.date.split('-').map(Number);
+      const selected = new Date(y, m - 1, d);
+      selected.setHours(0, 0, 0, 0);
       const today = new Date();
       today.setHours(0, 0, 0, 0);
       if (selected < today) {
         errs.date = 'Date cannot be in the past.';
+      }
+    }
+
+    if (!data.timeWindow) {
+      errs.timeWindow = 'Please select a time slot.';
+    } else if (data.date) {
+      const slotObj = TIME_SLOTS.find(s => s.label === data.timeWindow);
+      if (slotObj) {
+        const slotStatus = getSlotStatus(slotObj, data.date);
+        if (!slotStatus.available) {
+          errs.timeWindow = `Time slot is ${slotStatus.reason === 'passed' ? 'in the past' : 'outside opening hours'}.`;
+        }
       }
     }
 
@@ -89,6 +214,7 @@ export default function BookingForm() {
       name: true,
       email: true,
       date: true,
+      timeWindow: true,
       serviceId: true
     });
 
@@ -116,9 +242,7 @@ export default function BookingForm() {
           telephone: formData.telephone,
           service: `${selectedService.name} (${selectedService.price} · ${selectedService.time})`,
           date: formData.date,
-          timeWindow: formData.timeWindow === 'morning' ? 'Morning (10:00 am — 12:30 pm)' :
-                      formData.timeWindow === 'afternoon' ? 'Afternoon (12:30 pm — 4:00 pm)' :
-                      'Evening (4:00 pm — 8:00 pm)',
+          timeWindow: formData.timeWindow,
           notes: formData.notes
         })
       });
@@ -143,13 +267,16 @@ export default function BookingForm() {
   };
 
   const handleReset = () => {
+    const freshDate = getEarliestAvailableDate();
+    const freshSlot = TIME_SLOTS.find(s => getSlotStatus(s, freshDate).available)?.label || '10:00 am';
+
     setFormData({
       name: '',
       email: '',
       telephone: '',
       serviceId: SERVICES[0].id,
-      date: '',
-      timeWindow: 'morning',
+      date: freshDate,
+      timeWindow: freshSlot,
       notes: ''
     });
     setErrors({});
@@ -371,9 +498,10 @@ export default function BookingForm() {
 
         </div>
 
-        {/* Row 3: Date & Preferred Session Window */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        {/* Row 3: Preferred Date (Custom Themed Calendar) & Preferred Time Slot */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 items-start">
           
+          {/* Custom Themed Calendar Date Selector */}
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <label htmlFor="booking-date" className="text-[11px] font-poppins uppercase tracking-wider text-neutral-300 font-medium block">
@@ -383,37 +511,56 @@ export default function BookingForm() {
                 <span className="text-[10px] text-red-400 font-poppins">{errors.date}</span>
               )}
             </div>
-            <input 
+
+            <CalendarPicker 
               id="booking-date"
-              name="date"
-              type="date" 
-              min={todayString}
-              value={formData.date}
-              onChange={handleChange}
-              onBlur={() => handleBlur('date')}
-              required
-              className={`w-full bg-black/60 border p-4 text-white text-sm focus:outline-none transition-colors rounded-2xl font-sans cursor-pointer ${
-                touched.date && errors.date 
-                  ? 'border-red-500 focus:border-red-400' 
-                  : 'border-white/15 focus:border-emerald-500'
-              }`} 
+              selectedDate={formData.date}
+              onDateChange={(newDate) => {
+                const updated = { ...formData, date: newDate };
+                setFormData(updated);
+                setTouched(prev => ({ ...prev, date: true }));
+                setErrors(validate(updated));
+              }}
+              hasError={Boolean(touched.date && errors.date)}
             />
           </div>
 
+          {/* Smart Time Slot Selector with Past Time Filtering */}
           <div className="space-y-2">
-            <label htmlFor="booking-time" className="text-[11px] font-poppins uppercase tracking-wider text-neutral-300 font-medium block">
-              Preferred Time Slot
-            </label>
+            <div className="flex items-center justify-between">
+              <label htmlFor="booking-time" className="text-[11px] font-poppins uppercase tracking-wider text-neutral-300 font-medium block">
+                Preferred Time Slot <span className="text-emerald-400">*</span>
+              </label>
+              {touched.timeWindow && errors.timeWindow && (
+                <span className="text-[10px] text-red-400 font-poppins">{errors.timeWindow}</span>
+              )}
+            </div>
+
             <select 
               id="booking-time"
               name="timeWindow"
               value={formData.timeWindow}
               onChange={handleChange}
+              onBlur={() => handleBlur('timeWindow')}
               className="w-full bg-black/60 border border-white/15 p-4 text-white text-sm focus:outline-none focus:border-emerald-500 transition-colors rounded-2xl font-sans cursor-pointer"
             >
-              <option value="morning">Morning (10:00 am — 12:30 pm)</option>
-              <option value="afternoon">Afternoon (12:30 pm — 4:00 pm)</option>
-              <option value="evening">Evening (4:00 pm — 8:00 pm)</option>
+              {TIME_SLOTS.map((slot) => {
+                const { available, label } = getSlotStatus(slot, formData.date);
+                return (
+                  <option 
+                    key={slot.id} 
+                    value={slot.label} 
+                    disabled={!available}
+                    className={`py-2 font-sans ${
+                      available 
+                        ? 'bg-[#111] text-white' 
+                        : 'bg-[#1a1a1a] text-neutral-500'
+                    }`}
+                  >
+                    {label}
+                  </option>
+                );
+              })}
             </select>
           </div>
 
