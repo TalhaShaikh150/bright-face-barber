@@ -1,31 +1,45 @@
 "use client";
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaArrowLeft, FaArrowRight, FaStar, FaQuoteLeft } from 'react-icons/fa';
+import { FaArrowLeft, FaArrowRight, FaStar, FaQuoteLeft, FaExternalLinkAlt } from 'react-icons/fa';
 
 export default function TestimonialCarousel({ isDark = false }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const testimonials = [
     {
-      name: "Thomas Kelly",
-      role: "Regular Client · Fitzrovia",
-      date: "Visited August 2024",
-      text: "Best barbershop in the local area. I've tried multiple others in London and none can match the cut and care taken, as well as value for money. You're never rushed in and out, and they always ensure you're happy with your cut no matter if it takes extra time. Atmosphere is chilled out, plenty of space so you can genuinely relax.",
-      rating: 5
-    },
-    {
-      name: "Yusif Suleymanov",
-      role: "Verified Client · London W1",
-      date: "Visited July 2024",
-      text: "Tried many different barbershops in London, but stuck to Bright Face right after the first cut. Amazing barbers, especially Talib, very professional and lovely precision work on my hair & beard. Best barbershop in London. Highly recommend!",
-      rating: 5
-    },
-    {
       name: "Michael Haddad",
-      role: "Client · Central London",
-      date: "Visited September 2024",
-      text: "I enquired late and was desperate for a haircut and beard trim for an early flight the next morning. Talib was a saviour — hanging back late to make sure he got it in. The craftsmanship is amazing and the cut is without question the sharpest in the area.",
+      role: "Verified Client · London W1",
+      date: "Google Review",
+      text: "I enquired late and was desperate for a hair cut and beard trim for an early flight the next day, Talib was a saviour - hanging back late to make sure he got it in. The service is amazing and the cut is the best in the area. I have been working around Goodge Street and trying to find a new barber for a while but I can confidently say I'll be coming back. 100% recommend <3",
+      rating: 5
+    },
+    {
+      name: "Hamish Gibson",
+      role: "Client of 2 Years · Central London",
+      date: "Google Review",
+      text: "I've been coming here for 2 years and I'm thrilled with how my haircut turns out every time. Talib and his colleague are excellent barbers and are always very accommodating, friendly, and professional. Talib offers very good advice and tips on which styles work best and how to style it afterwards too. Always happy to keep coming back!",
+      rating: 5
+    },
+    {
+      name: "Farhan Gurbanov",
+      role: "Verified Client · Fitzrovia",
+      date: "Google Review",
+      text: "Best barber shop you'll find in London. Very calm and professional atmosphere. Gives the best haircuts and advise for hair care. Would definitely recommend to everyone.",
+      rating: 5
+    },
+    {
+      name: "Rodrigo Franco",
+      role: "Regular Client · London",
+      date: "Google Review",
+      text: "Amazing barbershop in London with great service and hospitality. Haircuts are always great and always very easy to make a booking. Highly recommend.",
+      rating: 5
+    },
+    {
+      name: "Ismail",
+      role: "Verified Client · London",
+      date: "Google Review",
+      text: "Super friendly and very professional. I used to go to Ted Grooming Room where the results were too inconsistent for much higher prices. So I switched to Bright Face and they never disappointed! The service is top quality, I would definitely recommend!",
       rating: 5
     }
   ];
@@ -68,21 +82,21 @@ export default function TestimonialCarousel({ isDark = false }) {
             </div>
 
             {/* Testimonial Quote */}
-            <p className={`font-serif text-base sm:text-xl md:text-2xl lg:text-3xl font-light italic leading-relaxed mb-6 sm:mb-8 max-w-2xl ${
-              isDark ? 'text-white/90' : 'text-neutral-900'
+            <p className={`font-heading text-lg sm:text-2xl md:text-3xl lg:text-4xl font-light italic leading-relaxed mb-6 sm:mb-8 max-w-2xl ${
+              isDark ? 'text-white/95' : 'text-neutral-900'
             }`}>
               "{current.text}"
             </p>
 
             {/* Author info */}
             <div className="space-y-1">
-              <h3 className={`text-sm sm:text-base md:text-lg font-serif font-bold uppercase tracking-[0.15em] ${
+              <h3 className={`text-sm sm:text-base md:text-lg font-heading font-bold uppercase tracking-[0.15em] ${
                 isDark ? 'text-white' : 'text-black'
               }`}>
                 {current.name}
               </h3>
-              <p className={`font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.25em] ${
-                isDark ? 'text-white/50' : 'text-black/50'
+              <p className={`font-poppins text-[9px] sm:text-[10px] uppercase tracking-[0.16em] sm:tracking-[0.2em] font-medium ${
+                isDark ? 'text-neutral-400' : 'text-black/50'
               }`}>
                 {current.role} • {current.date}
               </p>
@@ -98,14 +112,14 @@ export default function TestimonialCarousel({ isDark = false }) {
           aria-label="Previous testimonial"
           className={`w-10 h-10 sm:w-11 sm:h-11 rounded-full border flex items-center justify-center transition-all duration-300 ${
             isDark 
-              ? 'border-white/20 text-white/60 hover:text-white hover:border-white bg-black/60 hover:scale-105' 
+              ? 'border-white/20 text-neutral-300 hover:text-emerald-400 hover:border-emerald-400 bg-white/5 hover:scale-105' 
               : 'border-black/20 text-black/60 hover:text-black hover:border-black bg-white/60 hover:scale-105'
           }`}
         >
           <FaArrowLeft size={12} />
         </button>
 
-        {/* Carousel Indicators */}
+        {/* Carousel Indicators with Emerald Active Glow */}
         <div className="flex items-center gap-2">
           {testimonials.map((_, i) => (
             <button
@@ -114,8 +128,8 @@ export default function TestimonialCarousel({ isDark = false }) {
               aria-label={`Go to slide ${i + 1}`}
               className={`transition-all duration-300 rounded-full h-1.5 ${
                 currentIndex === i 
-                  ? isDark ? 'w-8 bg-white' : 'w-8 bg-black' 
-                  : isDark ? 'w-2 bg-white/20' : 'w-2 bg-black/20'
+                  ? isDark ? 'w-8 bg-emerald-400' : 'w-8 bg-black' 
+                  : isDark ? 'w-2 bg-white/20 hover:bg-white/40' : 'w-2 bg-black/20'
               }`}
             />
           ))}
@@ -124,14 +138,31 @@ export default function TestimonialCarousel({ isDark = false }) {
         <button 
           onClick={handleNext}
           aria-label="Next testimonial"
-          className={`w-11 h-11 rounded-full border flex items-center justify-center transition-all duration-300 ${
+          className={`w-10 h-10 sm:w-11 sm:h-11 rounded-full border flex items-center justify-center transition-all duration-300 ${
             isDark 
-              ? 'border-white/20 text-white/60 hover:text-white hover:border-white bg-black/60 hover:scale-105' 
+              ? 'border-white/20 text-neutral-300 hover:text-emerald-400 hover:border-emerald-400 bg-white/5 hover:scale-105' 
               : 'border-black/20 text-black/60 hover:text-black hover:border-black bg-white/60 hover:scale-105'
           }`}
         >
           <FaArrowRight size={12} />
         </button>
+      </div>
+
+      {/* Direct link to Google Business Profile */}
+      <div className="pt-6 sm:pt-8 text-center">
+        <a
+          href="https://share.google/u41PKPG8WwfOcUXyS"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`inline-flex items-center gap-2 font-poppins text-xs uppercase tracking-wider py-2.5 px-5 rounded-full border transition-all duration-300 font-medium ${
+            isDark
+              ? 'border-white/15 text-neutral-300 hover:text-emerald-400 hover:border-emerald-500/40 bg-white/[0.02] hover:bg-white/[0.06]'
+              : 'border-black/15 text-black/80 hover:text-black hover:border-black bg-black/[0.02] hover:bg-black/[0.06]'
+          }`}
+        >
+          <span>View All 186 Reviews on Google Business</span>
+          <FaExternalLinkAlt size={9} className="text-emerald-400" />
+        </a>
       </div>
 
     </div>

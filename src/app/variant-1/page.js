@@ -20,7 +20,7 @@ export default function Variant1Page() {
     <main className="min-h-screen bg-white text-neutral-900 selection:bg-black selection:text-white relative">
       
       {/* Floating Variation Badge */}
-      <div className="fixed bottom-5 left-5 z-40 bg-black/85 backdrop-blur-md text-white text-[11px] font-mono py-2 px-4 rounded-full flex items-center gap-4 border border-white/20 shadow-2xl">
+      <div className="fixed bottom-5 left-5 z-40 bg-black/85 backdrop-blur-md text-white text-[11px] font-poppins py-2 px-4 rounded-full flex items-center gap-4 border border-white/20 shadow-2xl font-medium">
         <span>PREVIEW: EDITORIAL 01 // CORMORANT</span>
         <Link href="/" className="underline flex items-center gap-1.5 hover:text-neutral-300">
           <FaArrowLeft size={9} /> Switcher

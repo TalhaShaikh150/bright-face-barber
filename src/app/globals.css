@@ -4,31 +4,71 @@
   --color-brand-light: #ffffff;
   --color-brand-gray: #f8f8f8;
   --color-brand-dark: #080808;
-  --font-sans: var(--font-jakarta), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-serif: var(--font-bodoni), Georgia, Cambria, "Times New Roman", Times, serif;
-  --font-cormorant: var(--font-cormorant), Georgia, serif;
-  --font-italiana: var(--font-italiana), Georgia, serif;
-  --font-mono: var(--font-space-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --color-surface-card: #0d0d0d;
+  --font-sans: 'Plus Jakarta Sans', var(--font-jakarta-family), var(--font-jakarta), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: 'Bodoni Moda', var(--font-bodoni-family), var(--font-bodoni), Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-cormorant: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
+  --font-heading: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
+  --font-italiana: 'Italiana', var(--font-italiana-family), var(--font-italiana), Georgia, serif;
+  --font-mono: 'Poppins', var(--font-poppins-family), sans-serif;
+  --font-poppins: 'Poppins', var(--font-poppins-family), sans-serif;
 }
 
 :root {
   --background: var(--color-brand-light);
   --foreground: var(--color-brand-dark);
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-button: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'Poppins', var(--font-poppins-family), sans-serif;
+  --font-poppins: 'Poppins', var(--font-poppins-family), sans-serif;
+}
+
+/* Dynamic Heading Typography Class */
+.font-heading,
+.font-cormorant {
+  font-family: var(--font-heading, 'Cormorant Garamond', Georgia, serif) !important;
+}
+
+/* Poppins Typography Class */
+.font-poppins,
+.font-mono,
+label {
+  font-family: var(--font-poppins, 'Poppins', sans-serif) !important;
+}
+
+/* Dynamic Button Typography Class — Responds live to Font Studio selection */
+.font-btn,
+.btn-font,
+button,
+[role="button"] {
+  font-family: var(--font-button, var(--font-heading)) !important;
 }
 
 html {
-  scroll-behavior: smooth;
-  background-color: #080808;
-  color: #080808;
+  background-color: #000000;
+  color: #ffffff;
   overflow-x: hidden;
   max-width: 100vw;
 }
 
 body {
-  background: #ffffff;
-  color: #080808;
+  background: #000000;
+  color: #ffffff;
   overflow-x: hidden;
   max-width: 100vw;
+}
+
+/* Form input, select, textarea styling */
+input,
+select,
+textarea {
+  font-family: var(--font-sans), sans-serif;
+}
+
+::selection {
+  background-color: #10b981;
+  color: #000000;
 }
 
 /* Subtle Film Grain Noise Overlay */

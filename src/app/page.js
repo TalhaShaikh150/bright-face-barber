@@ -1,159 +1,101 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import HeroSection from '@/components/HeroSection';
+import TrustStrip from '@/components/TrustStrip';
 import AboutSection from '@/components/AboutSection';
+import BookingSection from '@/components/BookingSection';
 import ServicesAccordion from '@/components/ServicesAccordion';
 import TestimonialCarousel from '@/components/TestimonialCarousel';
 import AnimatedSection from '@/components/AnimatedSection';
 import Link from 'next/link';
-import Image from 'next/image';
 import { FaArrowRight } from 'react-icons/fa';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white text-neutral-900 selection:bg-black selection:text-white relative">
+    <main className="min-h-screen bg-[#000000] text-neutral-100 selection:bg-emerald-500 selection:text-black relative">
       
-      {/* Dynamic Cinematic Navbar */}
+      {/* Dynamic Cinematic Dark Navbar with Emerald Details */}
       <Navbar />
       
       {/* 1. Cinematic Hero Section */}
       <HeroSection />
 
-      {/* 2. About Section - Cormorant Garamond Editorial (Unified Font) */}
+      {/* Google Business Profile Rating & Reviews Trust Strip */}
+      <TrustStrip />
+
+      {/* 2. About Section - Clean Dark Luxury & Craftsman Heritage */}
       <AboutSection />
 
-      {/* 3. Booking Teaser - BLACK */}
-      <section className="py-16 sm:py-24 md:py-36 px-5 sm:px-8 md:px-14 bg-black text-white relative overflow-hidden">
-        <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-          
-          {/* Booking Image Frame with Refined Rounded Architecture */}
-          <AnimatedSection className="lg:col-span-6 flex justify-center lg:justify-start">
-            <div className="relative w-full max-w-[320px] sm:max-w-[420px] lg:max-w-[460px] aspect-[4/5] rounded-2xl sm:rounded-[36px] md:rounded-[44px] overflow-hidden border border-white/15 shadow-[0_20px_60px_rgba(0,0,0,0.6)] group">
-              <Image 
-                src="/images/booking.jpg" 
-                alt="Bright Face Barber - Chair Stations" 
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105" 
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-            </div>
-          </AnimatedSection>
-          
-          {/* Booking Info & Action */}
-          <AnimatedSection delay={0.2} className="lg:col-span-6 space-y-6 sm:space-y-8 text-center lg:text-left">
-            <h2 className="text-3xl sm:text-5xl md:text-6xl font-sans font-bold uppercase tracking-[0.16em] sm:tracking-[0.25em] text-white">
-              Booking
-            </h2>
+      {/* 3. Booking Section - Editorial Unhurried Reservation */}
+      <BookingSection />
 
-            <div className="space-y-3 sm:space-y-4 text-neutral-300 font-sans text-sm sm:text-base md:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0">
-              <p>
-                Reserve your spot at our barber shop for a top-notch grooming experience.
+      {/* 4. Our Services - Clean & Uncluttered Editorial Layout */}
+      <section className="py-20 sm:py-28 md:py-36 px-5 sm:px-8 md:px-14 bg-[#050505] text-white relative overflow-hidden border-b border-white/10">
+        <div className="max-w-[1440px] mx-auto relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+            
+            {/* Left Column: Heading, Narrative, Link */}
+            <AnimatedSection className="lg:col-span-5 space-y-6 sm:space-y-8">
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                  <span className="font-poppins text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-emerald-400 font-semibold block">
+                    Grooming Menu · Newman St
+                  </span>
+                </div>
+                <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-heading font-normal leading-[0.9] tracking-tight uppercase text-white">
+                  Our <br/>
+                  <span className="italic font-light text-emerald-400">Services</span>
+                </h2>
+              </div>
+
+              <p className="font-sans text-neutral-300 text-sm sm:text-base md:text-lg leading-relaxed max-w-md">
+                Every cut, shave, and treatment is customized to your preferences, facial structure, and lifestyle with unhurried care.
               </p>
-              <p className="text-white font-medium">
-                Your fresh look is just an appointment away!
-              </p>
-            </div>
 
-            <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-6 w-full">
-              <Link 
-                href="/booking" 
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-white text-black px-10 sm:px-12 py-3.5 sm:py-4 text-xs font-sans uppercase tracking-[0.2em] font-bold rounded-full hover:bg-neutral-200 transition-all duration-300 shadow-xl hover:scale-105 active:scale-95"
-              >
-                <span>Book Now</span>
-                <FaArrowRight size={11} />
-              </Link>
-              
-              <a 
-                href="tel:02076379288" 
-                className="font-sans text-xs uppercase tracking-[0.15em] text-white/70 hover:text-white transition-colors"
-              >
-                Or Call 020 7637 9288
-              </a>
-            </div>
-          </AnimatedSection>
+              <div className="pt-2">
+                <Link 
+                  href="/services" 
+                  className="inline-flex items-center justify-center gap-3 bg-emerald-500 text-black px-8 sm:px-10 py-4 text-xs font-btn uppercase tracking-[0.2em] font-bold rounded-full hover:bg-emerald-400 transition-all duration-300 shadow-md hover:scale-105 active:scale-95 group"
+                >
+                  <span>View Full Menu</span>
+                  <FaArrowRight size={11} className="transition-transform group-hover:translate-x-1" />
+                </Link>
+              </div>
+            </AnimatedSection>
 
+            {/* Right Column: Clean Accordion */}
+            <AnimatedSection delay={0.2} className="lg:col-span-7 w-full">
+              <ServicesAccordion isDark={true} />
+            </AnimatedSection>
+
+          </div>
         </div>
       </section>
 
-      {/* 4. Our Services - WHITE */}
-      <section className="py-16 sm:py-24 md:py-32 px-5 sm:px-8 md:px-14 bg-white text-neutral-900 relative overflow-hidden">
-        <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+      {/* 5. Testimonials - Spacious & Uncluttered Guestbook */}
+      <section className="py-20 sm:py-28 md:py-36 px-5 sm:px-8 md:px-14 bg-[#000000] text-white relative overflow-hidden border-b border-white/10">
+        <div className="max-w-[1440px] mx-auto relative z-10 space-y-12 sm:space-y-16">
           
-          {/* Left Column: Heading, Style Previews, Book Button */}
-          <AnimatedSection className="lg:col-span-5 space-y-6 sm:space-y-8">
-            <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-serif font-normal leading-[0.9] tracking-tight uppercase text-black">
-              Our <br/>
-              <span className="italic font-light text-neutral-400">Services</span>
-            </h2>
-
-            <p className="font-sans text-neutral-600 text-sm sm:text-base md:text-lg leading-relaxed max-w-md">
-              Every cut, shave, and treatment is customized to your preferences and finished with care.
-            </p>
-
-            {/* Circular Preview Images */}
-            <div className="flex gap-3 sm:gap-5 overflow-x-auto pb-4 no-scrollbar max-w-full">
-              <div className="w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full overflow-hidden shrink-0 relative border border-black/10 shadow-lg group">
-                <Image 
-                  src="/images/service-1.jpg" 
-                  alt="Classic Cut & Beard Style" 
-                  fill 
-                  className="object-cover transition-transform duration-500 group-hover:scale-110" 
-                />
-              </div>
-              <div className="w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full overflow-hidden shrink-0 relative border border-black/10 shadow-lg group">
-                <Image 
-                  src="/images/service-2.jpg" 
-                  alt="Precision Skin Fade" 
-                  fill 
-                  className="object-cover transition-transform duration-500 group-hover:scale-110" 
-                />
-              </div>
-              <div className="w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full overflow-hidden shrink-0 relative border border-black/10 shadow-lg group">
-                <Image 
-                  src="/images/service-3.jpg" 
-                  alt="Sculpted Beard Treatment" 
-                  fill 
-                  className="object-cover transition-transform duration-500 group-hover:scale-110" 
-                />
-              </div>
-            </div>
-
-            <div className="pt-2">
-              <Link 
-                href="/booking" 
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-black text-white px-10 sm:px-12 py-3.5 sm:py-4 text-xs font-sans uppercase tracking-[0.2em] font-bold rounded-full hover:bg-neutral-800 transition-all duration-300 shadow-md hover:scale-105 active:scale-95"
-              >
-                <span>Book</span>
-                <FaArrowRight size={11} />
-              </Link>
-            </div>
-          </AnimatedSection>
-
-          {/* Right Column: Accordion */}
-          <AnimatedSection delay={0.2} className="lg:col-span-7 w-full">
-            <ServicesAccordion isDark={false} />
-          </AnimatedSection>
-
-        </div>
-      </section>
-
-      {/* 5. Testimonials - BLACK */}
-      <section className="py-16 sm:py-24 md:py-32 px-5 sm:px-8 md:px-14 bg-black text-white relative overflow-hidden">
-        <div className="max-w-[1400px] mx-auto">
-          
-          <AnimatedSection className="text-center max-w-xl mx-auto mb-10 sm:mb-16">
-            <h2 className="text-xs sm:text-sm font-sans font-bold uppercase tracking-[0.25em] sm:tracking-[0.3em] text-white/50">
-              Client Stories
+          <AnimatedSection className="text-center max-w-xl mx-auto space-y-3">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block mb-1"></span>
+            <span className="font-poppins text-[10px] uppercase tracking-[0.2em] text-emerald-400 font-semibold block">
+              The Fitzrovia Guestbook
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-normal uppercase tracking-tight text-white">
+              Client Stories & Reviews
             </h2>
           </AnimatedSection>
 
-          {/* Testimonial Carousel */}
-          <TestimonialCarousel isDark={true} />
+          {/* Testimonial Carousel - Naturally Breathable */}
+          <div className="w-full">
+            <TestimonialCarousel isDark={true} />
+          </div>
 
         </div>
       </section>
 
-      {/* Global Footer */}
+      {/* Global Clean Minimalist Footer */}
       <Footer />
 
     </main>
